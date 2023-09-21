@@ -17,7 +17,7 @@ return [
     'google' => [
         'client_id' => '1026511879608-b36nve65dhube95iasamfgl4io502lps.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'https://localhost:8000/auth/google/callback',
+        'redirect' => 'http://localhost:8000/auth/google/callback',
     ],
 
     'mailgun' => [
