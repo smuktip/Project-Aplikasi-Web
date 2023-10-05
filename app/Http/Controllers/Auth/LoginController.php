@@ -64,8 +64,8 @@ class LoginController extends Controller
         ]);
 
         event(new Registered($user));
-        $credenBals = $request->only('email', 'password');
-        Auth::attempt($credenBals);
+        $credentials = $request->only('email', 'password');
+        Auth::attempt($credentials);
         $request->session()->regenerate();
         return redirect()->route('verificaBon.notice');
     }
