@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Auth\LoginControllers;
+use App\Http\Controllers\Auth\VerificationController;
+
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
@@ -33,4 +35,10 @@ Route::controller(LoginController::class)->group(function() {
     Route::get('/home', 'home')->name('home');
     Route::post('/logout', 'logout')->name('logout');
 
+});
+
+Route::controller(VerivicationController::class)->group(function() {
+    route::get('/email/verify', 'notice')->name('verification.notice');
+    route::get('/email/verify/{id}/{hash}', 'verify')->name('verification.verify');
+    route::post('/email/resend', 'resend')->name('verification.resend');
 });

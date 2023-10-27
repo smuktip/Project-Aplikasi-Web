@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-//use App\Http\Controllers\Controller;
-//use App\Providers\RouteServiceProvider;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+//use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class VerificationController extends Controller
 {
@@ -20,7 +21,7 @@ class VerificationController extends Controller
     |
     */
 
-    use VerifiesEmails;
+    // use VerifiesEmails;
 
     /**
      * Where to redirect users after verification.
@@ -34,8 +35,8 @@ class VerificationController extends Controller
      *
      * @return void
      */
-
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
@@ -43,7 +44,7 @@ class VerificationController extends Controller
 
     public function notice(Request $request) {
         return $request->user()->hasVerifiedEmail()
-            ? redirect()->route('home') : view('auth.verify');
+        ? redirect()->route('home') : view('auth.Verify');
     }
 
     public function verify(EmailVerificationRequest $request) {
@@ -54,6 +55,6 @@ class VerificationController extends Controller
     public function resend(Request $request) {
         $request->user()->sendEmailVerificationNotification();
         return back()
-        ->withSuccess('Kami telah mengirimkan link untuk verification ke email Anda.');
+        ->withSuccess('Kami telah mengirimkan link untuk Verifikasi ke Email Anda.');
     }
 }
